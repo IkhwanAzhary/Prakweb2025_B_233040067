@@ -9,20 +9,34 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    // public function up(): void
+    // {
+    //     Schema::create('posts', function (Blueprint $table) {
+    //         $table->id();
+    //         $table->foreignId('user_id')->constrained('user')->onDelete('cascade');
+    //         $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+    //         $table->string('title');
+    //         $table->string('slug')->unique();
+    //         $table->text('excerpt');
+    //         $table->text('body');
+    //         $table->string('image')->nullable();
+    //         $table->timestamps();
+    //     });
+    // }
+
     public function up(): void
-    {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('user')->onDelete('cascade');
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
-            $table->string('title');
-            $table->string('slug')->unique();
-            $table->text('excerpt');
-            $table->text('body');
-            $table->string('image')->nullable();
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('posts', function (Blueprint $table) {
+        $table->id();
+        $table->string('title');
+        $table->string('slug')->unique();
+        $table->text('body');
+        // Relasi ke Category dan User
+        $table->foreignId('category_id'); 
+        $table->foreignId('user_id'); 
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.
